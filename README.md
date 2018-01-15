@@ -1,20 +1,27 @@
-#Clover.Template
+# Clover.Template
 clover.template is a webpack config template
 
-##Uses
-###npm
+## Uses
+### npm
 ```npm
 npm install clover.template
 ```
 
-###js
+### js
 ```js
 import ct from 'clover.template'
 ```
 
-##Development
+## Development
 ```
 git clone https://github.com/skyhilam/clover.template.git template
 cd template
 npm install
+npm run dev
 ```
+
+## Production
+```
+npm run build
+```
+
