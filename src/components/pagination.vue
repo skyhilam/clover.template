@@ -1,5 +1,5 @@
 <template>
-<nav v-if="meta || sections > 1">
+<nav v-if="meta && sections > 1">
     <ul class="pagination " role="navigation" aria-label="Pagination">
         <li>
             <a href="#" @click.prevent="switched(meta.current_page - 1)">&laquo;</a>
