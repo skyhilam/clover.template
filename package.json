@@ -1,6 +1,6 @@
 {
   "name": "clover.foundation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "clover foundation",
   "main": "dist/app.js",
   "files": [
