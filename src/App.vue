@@ -1,19 +1,19 @@
 <template>
 	<div>
 		<h1 class="text-center">Tester</h1>
-
+		<v-pagination :meta="meta" ></v-pagination>
 	</div>
 </template>
 
 <script>
-import editor from 'cpn/editor'
+import pagination from 'cpn/pagination'
 
 export default {
 	data() {
 		return {
 			meta: {
                 "current_page": 1,
-                "total_pages": 100,
+                "total_pages": 2,
 			}
 		}
 	},
@@ -23,7 +23,7 @@ export default {
 		}
 	},
 	components: {
-		'vEditor': editor,
+		'vPagination': pagination,
 	}
 }
 </script>
