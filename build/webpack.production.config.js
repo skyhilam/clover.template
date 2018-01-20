@@ -21,7 +21,15 @@ module.exports = merge(base, {
 				test: /\.scss$/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'vue-style-loader',
-					use: ['css-loader', 'sass-loader']
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								minimize: true
+							}
+						}, 
+						'sass-loader'
+					]
 				})
 			}
 		]

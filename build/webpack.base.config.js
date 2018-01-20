@@ -6,7 +6,8 @@ const config = {
 	resolve: {
 		alias: {
 			'@': path.resolve('./src'),
-			'assets': path.resolve('./src/assets')
+			'style': path.resolve('./src/assets/sass'),
+			'cpn': path.resolve('./src/components')
 		},
 		extensions: ['.js', '.scss', '.vue']
 	},
@@ -15,10 +16,15 @@ const config = {
 		rules: [
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
-				options: {
-					extractCSS: process.env.NODE_ENV === 'production'
-				}
+				use: [
+					{
+						loader: 'vue-loader',
+						options: {
+							extractCSS: process.env.NODE_ENV === 'production'
+						}		
+					}
+				]
+				
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif|svg$)/,

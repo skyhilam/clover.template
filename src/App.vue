@@ -1,21 +1,33 @@
 <template>
-	<div id="app" class="text-center">
-		<h1>Hello sky, it's working</h1>
+	<div>
+		<h1 class="text-center">Tester</h1>
+
 	</div>
 </template>
 
 <script>
+import editor from 'cpn/editor'
 
 export default {
-	name: 'app',
 	data() {
 		return {
-			
+			meta: {
+                "current_page": 1,
+                "total_pages": 100,
+			}
 		}
+	},
+	methods: {
+		getData(page) {
+			this.meta.current_page = page
+		}
+	},
+	components: {
+		'vEditor': editor,
 	}
 }
 </script>
 
 <style lang="scss">
-	@import '~assets/css/app';
+	@import '~style/app';
 </style>
