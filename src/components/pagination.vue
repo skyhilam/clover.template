@@ -82,11 +82,14 @@ export default {
     },
     methods: {
         switched(page) {
-            if (page <= 0 || page > this.meta.total_pages) {
+            if (this.pageIsOutOfBounds(page)) {
                 return 
             }
-            console.log(page)
             this.$emit('pagination:switched', page)
+        },
+
+        pageIsOutOfBounds(page) {
+            return page <= 0 || page > this.meta.total_pages
         },
 
         goBackASection() {
