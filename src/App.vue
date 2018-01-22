@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="text-center">Tester</h1>
-		<v-pagination :meta="meta" ></v-pagination>
+		<v-pagination :meta="meta" v-on:pagination:switched="getData" ></v-pagination>
 	</div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
 	data() {
 		return {
 			meta: {
-                "current_page": 1,
+                "current_page": 20,
                 "total_pages": 2,
 			}
 		}

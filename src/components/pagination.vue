@@ -1,5 +1,5 @@
 <template>
-<nav v-if="meta && pages.length > 1">
+<nav v-if="meta.current_page && pages.length > 1">
     <ul class="pagination " role="navigation" aria-label="Pagination">
         <li>
             <a href="#" @click.prevent="switched(meta.current_page - 1)">&laquo;</a>
@@ -85,7 +85,7 @@ export default {
             if (page <= 0 || page > this.meta.total_pages) {
                 return 
             }
-
+            console.log(page)
             this.$emit('pagination:switched', page)
         },
 
