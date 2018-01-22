@@ -75,6 +75,11 @@ export default {
         }
 
     },
+    mounted() {
+        if (this.meta.current_page > this.meta.total_pages) {
+            this.switched(this.meta.total_pages)
+        }
+    },
     methods: {
         switched(page) {
             if (page <= 0 || page > this.meta.total_pages) {
