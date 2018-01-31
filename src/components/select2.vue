@@ -1,5 +1,6 @@
 <template>
     <select :multiple="multiple">
+        <option v-if="placeholder"></option>
         <option v-for="item in list" :value="item.id">{{ item.text }}</option>
     </select>
 </template>
