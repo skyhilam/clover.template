@@ -8,7 +8,7 @@
 import {extend, filter} from 'lodash'
 
 export default {
-    props: ['options', 'data-url', 'multiple'],
+    props: ['options', 'data-url', 'multiple', 'placeholder'],
     data() {
         return {
             list: []
@@ -78,7 +78,8 @@ export default {
 
     mounted() {
         let options = extend({
-            theme: "foundation"
+            theme: "foundation",
+            placeholder: this.placeholder
         }, this.options)
         
         this.bind(options)
