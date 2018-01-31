@@ -1,29 +1,45 @@
 <template>
 	<div>
 		<h1 class="text-center">Tester</h1>
-		<v-pagination :meta="meta" v-on:pagination:switched="getData" ></v-pagination>
+		<v-select :options="{data: data}" v-on:selected="select2Selected" v-on:tag-created="select2TagCreated"></v-select>
 	</div>
 </template>
 
 <script>
-import pagination from 'cpn/pagination'
+import select2 from 'cpn/select2'
 
 export default {
 	data() {
 		return {
-			meta: {
-                "current_page": 20,
-                "total_pages": 2,
-			}
+			data: [{
+			    "text": "HKD",
+			    "id": 23
+			}, {
+			    "text": "RMB",
+			    "id": 24
+			}, {
+			    "text": "JPY",
+			    "id": 25
+			}, {
+			    "text": "TWD",
+			    "id": 26
+			}, {
+			    "text": "Bi",
+			    "id": 28
+			}, {
+			    "text": "MOP",
+			    "id": 29
+			}],
 		}
 	},
 	methods: {
-		getData(page) {
-			this.meta.current_page = page
-		}
+		select2Selected(val) {
+			console.log(val)
+		},
 	},
+
 	components: {
-		'vPagination': pagination,
+		'vSelect': select2,
 	}
 }
 </script>
