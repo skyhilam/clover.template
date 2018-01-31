@@ -4,9 +4,7 @@
     </select>
 </template>
 
-<script type="text/javascript">
-require('select2')
-
+<script>
 import {extend, filter} from 'lodash'
 
 export default {

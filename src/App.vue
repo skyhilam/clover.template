@@ -1,12 +1,13 @@
 <template>
 	<div>
 		<h1 class="text-center">Tester</h1>
-		<v-select :options="{data: data}" v-on:selected="select2Selected" v-on:tag-created="select2TagCreated"></v-select>
+		<v-select :options="{data: data}" v-on:selected="select2Selected" ></v-select>
 	</div>
 </template>
 
 <script>
 import select2 from 'cpn/select2'
+
 
 export default {
 	data() {
