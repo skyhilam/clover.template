@@ -292,9 +292,9 @@
 
     computed: {
       list() {
-        var filterKey = this.type.toLowerCase();
+        var filterKey = String(this.type).toLowerCase();
         return this.json.filter(item => {
-          return item[this.anchor].toLowerCase().match(filterKey) || item[this.label].toLowerCase().match(filterKey);
+          return String(item[this.anchor]).toLowerCase().match(filterKey) || String(item[this.label]).toLowerCase().match(filterKey);
         }).slice(0, this.max);
       }
     },
