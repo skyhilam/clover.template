@@ -85,11 +85,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" >
-    @import "node_modules/select2/dist/css/select2";
-    @import "~style/foundation/select2/settings_select2";
-    @import "~style/foundation/select2/single-select2-foundation";
-    @import "~style/foundation/select2/common-select2-foundation";
-    @import "~style/foundation/select2/multiple-select2-foundation";
-</style>
