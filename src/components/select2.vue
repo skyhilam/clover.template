@@ -55,7 +55,9 @@ export default {
         filterSelected(filterArray) {
             let ids = this.flattenArray('id')
             // Return all selected values that were pre-loaded (i.e. are in this.list).
-            return filter(ids, x => filterArray.indexOf(x) >= 0)
+
+            let filtered = filter(ids, x => filterArray.indexOf(x) >= 0)
+            return this.multiple? filtered: filtered[0]
         },
         filterCreated(filterArray) {
             let ids = this.flattenArray('id')
