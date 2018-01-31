@@ -9,7 +9,7 @@
 import {extend, filter} from 'lodash'
 
 export default {
-    props: ['options', 'data-url', 'multiple', 'placeholder'],
+    props: ['options', 'data-url', 'multiple', 'placeholder', 'value'],
     data() {
         return {
             list: []
@@ -18,28 +18,44 @@ export default {
     
     methods: {
         bind(options) {
-            let self = this
-            let data = options.data
+            return new Promise((resolve, reject) => {
+                let self = this
+                let data = options.data
+                
 
-            // Map any select2 "data" params to the list data array, so vue can bind the list data.
-            if (data) {
-                this.list = data
-                options.data = undefined
-            }
+                // Map any select2 "data" params to the list data array, so vue can bind the list data.
+                if (data) {
+                    this.list = data
+                    options.data = undefined
+                }
+                
 
-            $(this.$el).select2(options).on('change', function() {
+                let select2 = $(this.$el).select2(options).on('change', function() {
+                    // Notify the listeners that the values have changed
+                    self.notify($(this).val())
+                })
 
-                // Notify the listeners that the values have changed
-                self.notify($(this).val())
+
+                // Populate the list via ajax if "data-url" prop has been defined.
+                if (this.dataUrl !== undefined) {
+                    this.getList(this.dataUrl)
+                        .then(() => {
+                            resolve(select2)
+                        })
+                }else {
+                    resolve(select2)
+                }
             })
 
-            // Populate the list via ajax if "data-url" prop has been defined.
-            if (this.dataUrl !== undefined) {
-                this.getList(this.dataUrl)
+        },
+        initValue(select2) {
+            let val = this.value
+            if (val) {
+                select2.val(val).trigger('change')
             }
         },
         getList(url) {
-            axios.get(url)
+            return axios.get(url)
                 .then(resp => {
                     this.list = resp.data
                 })
@@ -70,7 +86,7 @@ export default {
             this.notifyTagCreated(value)
         },
         notifySelected(value) {
-            this.$emit('selected', this.filterSelected(value))
+            this.$emit('input', this.filterSelected(value))
         },
         notifyTagCreated(tags) {
             this.$emit('tag-created', this.filterCreated(tags))
@@ -80,10 +96,11 @@ export default {
     mounted() {
         let options = extend({
             theme: "foundation",
-            placeholder: this.placeholder
+            placeholder: this.placeholder,
         }, this.options)
         
         this.bind(options)
+            .then(this.initValue)
     },
 }
 </script>
