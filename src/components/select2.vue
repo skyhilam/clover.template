@@ -81,7 +81,9 @@ export default {
         filterCreated(filterArray) {
             let ids = this.flattenArray('id')
             // Return all tags that have been created (i.e. are not in this.list)
-            return filter(filterArray, x => ids.indexOf(x) < 0)
+            return ids.length? 
+                filter(filterArray, x => ids.indexOf(x) < 0):
+                []
         },
         notify(value) {
             this.notifySelected(value)
