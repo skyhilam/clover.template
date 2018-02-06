@@ -69,6 +69,7 @@ export default {
                 let value = list[i][key]
                 flattened[i] = value.toString()
             }
+            console.log(flattened)
             return flattened
         },
         filterSelected(filterArray) {
@@ -81,9 +82,7 @@ export default {
         filterCreated(filterArray) {
             let ids = this.flattenArray('id')
             // Return all tags that have been created (i.e. are not in this.list)
-            return ids.length? 
-                filter(filterArray, x => ids.indexOf(x) < 0):
-                []
+            return filter(filterArray, x => ids.indexOf(x) < 0)
         },
         notify(value) {
             this.notifySelected(value)
