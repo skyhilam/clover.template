@@ -1,7 +1,7 @@
 <template>
     <select :multiple="multiple">
         <option v-if="placeholder"></option>
-        <option v-for="item in list" :value="item.id">{{ item.text }}</option>
+        <option v-for="item in list" :value="item.id" :key="item.id">{{ item.text }}</option>
     </select>
 </template>
 
@@ -12,7 +12,8 @@ export default {
     props: ['options', 'data-url', 'multiple', 'placeholder', 'value'],
     data() {
         return {
-            list: []
+            list: [],
+            select2: null
         }
     },
     
@@ -35,7 +36,6 @@ export default {
                     self.notify($(this).val())
                 })
 
-
                 // Populate the list via ajax if "data-url" prop has been defined.
                 if (this.dataUrl !== undefined) {
                     this.getList(this.dataUrl)
@@ -53,6 +53,8 @@ export default {
             if (val) {
                 select2.val(val).trigger('change')
             }
+
+            this.select2 = select2
         },
         getList(url) {
             return axios.get(url)
@@ -90,17 +92,38 @@ export default {
         },
         notifyTagCreated(tags) {
             this.$emit('tag-created', this.filterCreated(tags))
+        },
+
+        preset() {
+            let options = extend({
+                theme: "foundation",
+                placeholder: this.placeholder,
+            }, this.options)
+            
+            this.bind(options)
+                .then(this.initValue)
+        },
+        destroy() {
+            $(this.$el).select2('destroy')
+        },  
+        refresh() {
+            this.destroy()
+            this.preset()
+        }
+    },
+
+    watch: {
+        options() {
+            this.refresh()
+        },
+
+        dataUrl() {
+            this.refresh()
         }
     },
 
     mounted() {
-        let options = extend({
-            theme: "foundation",
-            placeholder: this.placeholder,
-        }, this.options)
-        
-        this.bind(options)
-            .then(this.initValue)
+        this.preset()
     },
 }
 </script>

@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<h1 class="text-center">Tester</h1>
-		<v-select :options="{data: data}" v-on:selected="select2Selected" ></v-select>
+		<v-select ref="selector" :options="{data: data}" v-on:selected="select2Selected" ></v-select>
+		<a href="#" @click.prevnet="change">change options</a>
+		{{data}}
 	</div>
 </template>
 
@@ -37,6 +39,24 @@ export default {
 		select2Selected(val) {
 			console.log(val)
 		},
+		change() {
+			this.data = [
+				{
+				    "text": "TWD",
+				    "id": 26
+				}, {
+				    "text": "Bi",
+				    "id": 28
+				}, {
+				    "text": "MOP",
+				    "id": 29
+				}
+			]
+
+			// console.log(this.$refs.selector.options)
+
+			this.$refs.selector.refresh()
+		}
 	},
 
 	components: {
