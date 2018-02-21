@@ -51,10 +51,6 @@
       placeholder: String,
       name: String,
       autofocus: Boolean,
-      debounceTime: {
-        Type: Number,
-        default: 500
-      },
 
       // Intial Value
       initValue: {
@@ -137,7 +133,7 @@
         return JSON.parse(JSON.stringify(data));
       },
       
-      input: debounce(val => {
+      input: debounce(function(val) {
         this.showList = true;
 
         // Callback Event
@@ -146,7 +142,7 @@
 
         // Get The Data
         this.getData(val)
-      }, this.debounceTime),
+      }, 300),
 
       showAll(){
         this.json = [];
