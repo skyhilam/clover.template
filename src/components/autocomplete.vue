@@ -42,6 +42,7 @@
 
 
 <script>
+  import debounce from 'lodash'
   export default {
 
     props: {
@@ -50,6 +51,10 @@
       placeholder: String,
       name: String,
       autofocus: Boolean,
+      debounceTime: {
+        Type: Number,
+        default: 500
+      },
 
       // Intial Value
       initValue: {
@@ -131,8 +136,8 @@
       cleanUp(data){
         return JSON.parse(JSON.stringify(data));
       },
-
-      input(val){
+      
+      input: debounce(val => {
         this.showList = true;
 
         // Callback Event
@@ -141,7 +146,7 @@
 
         // Get The Data
         this.getData(val)
-      },
+      }, this.debounceTime),
 
       showAll(){
         this.json = [];
