@@ -30,7 +30,6 @@ export default {
                     options.data = undefined
                 }
                 
-
                 let select2 = $(this.$el).select2(options).on('change', function() {
                     // Notify the listeners that the values have changed
                     self.notify($(this).val())

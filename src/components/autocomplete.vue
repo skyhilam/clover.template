@@ -67,11 +67,10 @@
       // Label of list
       label: String,
 
+      options: [Object, Array],
+
       // ajax URL will be fetched
-      url: {
-        type: String,
-        required: true
-      },
+      url: String,
 
       // query param
       param: {
@@ -241,7 +240,7 @@
         let self = this;
 
         if (val.length < this.min) return;
-
+        if (this.options) {this.json = this.options}
         if(this.url != null){
 
           // Callback Event

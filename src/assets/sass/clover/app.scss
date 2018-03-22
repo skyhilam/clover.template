@@ -165,7 +165,7 @@ $image-square-size: rem-calc(120);
 		}
 	}
 	&-body {
-		padding: 10px 20px;
+		padding: rem-calc(20);
 		&.collapse {
 			padding-left: 0;
 			padding-right: 0;
